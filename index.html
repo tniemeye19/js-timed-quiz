@@ -15,19 +15,72 @@
         <nav>
             <ul>
                 <li><a href="">View high scores</a></li>
-                <li class="timer">Time: </li>
+                <li class="timer">Time: <span class="timer-sec">100</span></li>
             </ul>
         </nav>
     </header>
-
-    <div class="title-content">
-        <h1 class="page-title">Coding Quiz Challenge</h1>
-        <p>Try to answer the following coding related questions within the time allowed. 
-            Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-        <div class="start-quiz">
-            <button class="start-btn" type="button">Start Quiz</button>
+    <!-- Landing Page, Quiz Title Page -->
+    <section>
+        <div class="title-content">
+            <h1 class="page-title">Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. 
+                Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <div class="start-quiz">
+                <button class="start-btn" type="button">Start Quiz</button>
+            </div>
         </div>
-    </div>
-
+    </section>
+    <!-- Quiz Questions -->
+    <section class="question-box">
+        <div class="question-ask">
+            <span>Commonly used data types DO NOT include:</span>
+        </div>
+        <div class="selection-list">
+            <div class="selection">
+                <span>strings</span>
+            </div>
+            <div class="selection">
+                <span>booleans</span>
+            </div>
+            <div class="selection">
+                <span>alerts</span>
+            </div>
+            <div class="selection">
+                <span>numbers</span>
+            </div>
+        </div>
+        <div class="wrong-right">
+            <span>Correct!</span>
+        </div>
+    </section>
+    <!-- Quiz Complete -->
+    <section class="complete-box">
+        <div class="complete">
+            <span>All done!</span>
+            <div class="final-statement">
+                <p>Your final score is: <span></span></p>
+            </div>
+            <div class="initials-box">
+                <form>
+                    <label for="initials" class="initial-txt">Enter initials:</label>
+                    <input type="text" id="initials" name="initials" value=""></label>
+                    <button type="submit" value="Submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- High Scores Page -->
+    <section class="score-box">
+        <div class="high-score-statement">
+            <span>High scores</span>
+        </div>
+        <div class="high-score-list">
+            <span>1. AB - 22</span>
+        </div>
+        <div class="end-buttons">
+            <button type="submit" id="go-back">Go back</button>
+            <button type="submit" id="clear-scores">Clear high scores</button>
+        </div>
+    </section>
 </body>
 </html>
