@@ -12,6 +12,10 @@
 body {
     background-color: var(--quaternary-color);
     font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
 }
 header nav {
     padding: 10px 30px 0 0;
@@ -36,11 +40,20 @@ header nav ul li a {
     font-weight: bold;
 }
 
-.title-content {
+.title-container {
     position: absolute;
-    z-index: -4;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--quaternary-color);
+    height: 100vh;
+    width: 100vw;
 }
-.title-content h1 {
+
+.title-container {
+    z-index: 1;
+}
+
+.title-container h1 {
     text-align: center;
     font-size: 4.2vw;
     color: black;
@@ -48,14 +61,13 @@ header nav ul li a {
     text-shadow: 1px 1px 2px var(--tertiary-color);
 }
 
-.title-content p {
+.title-container p {
     text-align: center;
     font-size: 2vw;
-    font-weight: thick;
     color: black;
-    padding: 0 19vw;
+    padding: 0 175px;
     margin: 0 0 20px 0;
-}
+} 
 
 .start-quiz {
     display: flex;
@@ -74,18 +86,27 @@ header nav ul li a {
     cursor: pointer;
 }
 
-.question-box,
-.complete-box,
-.score-box {
+.question-container,
+.complete-container,
+.score-container {
     position: absolute;
     display: flex;
     flex-direction: column;
-    margin: 5vw 12vw 0 12vw;
     background-color: var(--quaternary-color);
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
+    padding: 5vh 15vw 0 15vw;
 }
 
-.question-box {
+.question-container {
+    z-index: -1;
+}
+
+.complete-container {
+    z-index: -2;
+}
+
+.score-container {
     z-index: -3;
 }
 
@@ -122,12 +143,6 @@ header nav ul li a {
     font-size: 2vw;
     font-style: italic;
     color: var(--tertiary-color);
-}
-
-.complete-box,
-.score-box {
-    padding: 0 0 0 10vw;
-    min-width: 90%;
 }
 
 .final-statement,
@@ -179,4 +194,13 @@ header nav ul li a {
     font-size: 2.5vw;
     padding: 0.5vw 2vw;
     cursor: pointer;
+}
+
+.start-btn:hover,
+.selection:hover,
+.initials-box form button:hover,
+#clear-scores:hover,
+#go-back:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
 }

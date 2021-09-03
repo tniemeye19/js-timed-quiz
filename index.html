@@ -15,26 +15,30 @@
         <nav>
             <ul>
                 <li><a href="">View high scores</a></li>
-                <li class="timer">Time: <span class="timer-sec">100</span></li>
+                <li>Time: <span id="timer-sec"></span></li>
             </ul>
         </nav>
     </header>
     <!-- Landing Page, Quiz Title Page -->
-    <section>
-        <div class="title-content">
+    <section id="title-screen" class='title-container'>
+        <div>
             <h1 class="page-title">Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. 
                 Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <!-- Start Quiz Button -->
             <div class="start-quiz">
                 <button class="start-btn" type="button">Start Quiz</button>
             </div>
         </div>
     </section>
+
     <!-- Quiz Questions -->
-    <section class="question-box">
-        <div class="question-ask">
+    <section id="question-screen" class="question-container">
+        <!-- Question -->
+        <div id="question-title" class="question-ask">
             <span>Commonly used data types DO NOT include:</span>
         </div>
+        <!-- Answer Options -->
         <div class="selection-list">
             <div class="selection">
                 <span>strings</span>
@@ -49,12 +53,14 @@
                 <span>numbers</span>
             </div>
         </div>
+        <!-- Declaration of Wrong/Right upon Selection -->
         <div class="wrong-right">
             <span>Correct!</span>
         </div>
     </section>
+
     <!-- Quiz Complete -->
-    <section class="complete-box">
+    <section id="complete-screen" class="complete-container">
         <div class="complete">
             <span>All done!</span>
             <div class="final-statement">
@@ -70,7 +76,7 @@
         </div>
     </section>
     <!-- High Scores Page -->
-    <section class="score-box">
+    <section id="highscore-screen" class="score-container">
         <div class="high-score-statement">
             <span>High scores</span>
         </div>
@@ -78,9 +84,10 @@
             <span>1. AB - 22</span>
         </div>
         <div class="end-buttons">
-            <button type="submit" id="go-back">Go back</button>
-            <button type="submit" id="clear-scores">Clear high scores</button>
+            <button id="go-back">Go back</button>
+            <button id="clear-scores">Clear high scores</button>
         </div>
     </section>
+    <script src='./assets/js/script.js'></script>
 </body>
 </html>
