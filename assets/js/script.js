@@ -1,69 +1,67 @@
-let questions = [
+let questionsObj = [
     {
         q: "Commonly used data types DO NOT include:",
         a: "3. alerts",
-        aList: [
-            "1. strings",
-            "2. booleans",
-            "3. alerts",
-            "4. numbers"
-        ]
+        c1: "1. strings",
+        c2: "2. booleans",
+        c3: "3. alerts",
+        c4: "4. numbers"
     },
     {
-        q: "The condition if an if / else statement is enclosed with ______.",
+        q: "The condition of an if / else statement is enclosed with ______.",
         a: "3. parenthesis",
-        aList: [
-            "1. quotes",
-            "2. curly brackets",
-            "3. parenthesis",
-            "4. square brackets"
-        ]
+        c1: "1. quotes",
+        c2: "2. curly brackets",
+        c3: "3. parenthesis",
+        c4: "4. square brackets"
     },
     {
         q: "Arrays in JavaScript can be used to store ______.",
         a: "4. all of the above",
-        aList: [
-            "1. numbers and strings",
-            "2. other arrays",
-            "3. booleans",
-            "4. all of the above"
-        ]
+        c1: "1. numbers and strings",
+        c2: "2. other arrays",
+        c3: "3. booleans",
+        c4: "4. all of the above"
     },
     {
         q: "String values must be enclosed within ______ when being assigned to variables.",
         a: "3. quotes",
-        aList: [
-            "1. commas",
-            "2. curly brackets",
-            "3. quotes",
-            "4. parenthesis"
-        ]
+        c1: "1. commas",
+        c2: "2. curly brackets",
+        c3: "3. quotes",
+        c4: "4. parenthesis"
     },
     {
         q: "A very useful tool used during development and debugging for printing content to the debugger is:",
         a: "4. console.log",
-        aList: [
-            "1. JavaScript",
-            "2. terminal/bash",
-            "3. for loops",
-            "4. console.log"
-        ]
+        c1: "1. JavaScript",
+        c2: "2. terminal/bash",
+        c3: "3. for loops",
+        c4: "4. console.log"
     }
 ];
 
-var score = 0;
-
+// Initialize Elements for use in JavaScript
 var startBtn = document.querySelector(".start-btn");
 var timerEl = document.querySelector("#timer-sec");
+var landingPageEl = document.querySelector("#title-screen");
 var questionsEl = document.querySelector("#question-screen");
 var completeEl = document.querySelector("#complete-screen");
 var highscoreEl = document.querySelector("#highscore-screen");
 var questionTitleEl = document.querySelector("#question-title");
+var choiceOneEl = document.querySelector("#s1");
+var choiceTwoEl = document.querySelector("#s2");
+var choiceThreeEl = document.querySelector("#s3");
+var choiceFourEl = document.querySelector("#s4");
+var wrongORrightEl = document.querySelector("#wrongORright");
+var userFinalScoreEl = document.querySelector("#final-score");
 
-
+// Initialize variables for use within functions
+score = 0;
 timerEl.textContent = 0;
 
-startBtn.addEventListener('click', function(event) {
+// On Start Quiz click, timer begins counting down in increments of 1000 ms
+startBtn.addEventListener('click', function() {
 
     var timeRemaining = 100;
 
@@ -74,17 +72,35 @@ startBtn.addEventListener('click', function(event) {
         }
     }, 1000);
 
-
 });
 
-var testButton = document.getElementById('test')
+startBtn.addEventListener('click', function() {
+    // Set Title Screen to "disappear" so the questions page will be visible
+    landingPageEl.style.display = "none";
+    // Input first question text
+    questionTitleEl.textContent = questionsObj[0].q;
+    choiceOneEl.textContent = questionsObj[0].c1;
+    choiceTwoEl.textContent = questionsObj[0].c2;
+    choiceThreeEl.textContent = questionsObj[0].c3;
+    choiceFourEl.textContent = questionsObj[0].c4;
+})
 
-testButton.addEventListener('click', function(evt){
-    console.log('Stuff')
-    var scoreContainer = document.querySelector('.score-container')
-    scoreContainer.classList.toggle('invisible')
 
-});
+
+
+
+
+
+// Tutor Ex. Start
+// var testButton = document.getElementById('test')
+
+// testButton.addEventListener('click', function(evt){
+//     console.log('Stuff')
+//     var scoreContainer = document.querySelector('.score-container')
+//     scoreContainer.classList.toggle('invisible')
+
+// });
+// Tutor Ex. End
 
 // On start, retrieve first question, once first question is answered,
 // it will state whether it is right or wrong. After a selectioin is
@@ -96,14 +112,6 @@ testButton.addEventListener('click', function(evt){
 // takes you to the high scores page which lists all of the scores logged.
 // From there, you can press two buttons, one will take you to the title
 // menu, and the other will clear the high scores from localStorage.
-
-// Initialize game by pressing "Start Quiz"
-
-startBtn.onClick = function() {
-    
-}
-
-
 
 // click the start button
 // - timer starts and I am

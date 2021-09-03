@@ -49,8 +49,12 @@ header nav ul li a {
     width: 100vw;
 }
 
+.visible {
+    display: block;
+}
+
 .title-container {
-    z-index: 1;
+    z-index: 0;
 }
 
 .title-container h1 {
@@ -204,3 +208,4 @@ header nav ul li a {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
 }
+

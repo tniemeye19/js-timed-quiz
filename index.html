@@ -20,7 +20,7 @@
         </nav>
     </header>
     <!-- Landing Page, Quiz Title Page -->
-    <section id="title-screen" class='title-container'>
+    <section id="title-screen" class='title-container visible'>
         <div>
             <h1 class="page-title">Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. 
@@ -33,38 +33,38 @@
     </section>
 
     <!-- Quiz Questions -->
-    <section id="question-screen" class="question-container">
+    <section id="question-screen" class="question-container visible">
         <!-- Question -->
         <div id="question-title" class="question-ask">
-            <span>Commonly used data types DO NOT include:</span>
+            <!-- Question from Object -->
         </div>
         <!-- Answer Options -->
         <div class="selection-list">
-            <div class="selection">
-                <span>strings</span>
+            <div id="s1" class="selection">
+                <!-- Selection 1 from Object -->
             </div>
-            <div class="selection">
-                <span>booleans</span>
+            <div id="s2" class="selection">
+                <!-- Selection 2 from Object -->
             </div>
-            <div class="selection">
-                <span>alerts</span>
+            <div id="s3" class="selection">
+                <!-- Selection 3 from Object -->
             </div>
-            <div class="selection">
-                <span>numbers</span>
+            <div id="s4" class="selection">
+                <!-- Selection 4 from Object -->
             </div>
         </div>
         <!-- Declaration of Wrong/Right upon Selection -->
-        <div class="wrong-right">
-            <span>Correct!</span>
+        <div id="wrongORright" class="wrong-right">
+            <!-- States whether selection is wrong or right -->
         </div>
     </section>
 
     <!-- Quiz Complete -->
-    <section id="complete-screen" class="complete-container">
+    <section id="complete-screen" class="complete-container visible">
         <div class="complete">
             <span>All done!</span>
             <div class="final-statement">
-                <p>Your final score is: <span></span></p>
+                <p>Your final score is: <span id="final-score"></span></p>
             </div>
             <div class="initials-box">
                 <form>
@@ -76,12 +76,12 @@
         </div>
     </section>
     <!-- High Scores Page -->
-    <section id="highscore-screen" class="score-container">
+    <section id="highscore-screen" class="score-container visible">
         <div class="high-score-statement">
             <span>High scores</span>
         </div>
-        <div class="high-score-list">
-            <span>1. AB - 22</span>
+        <div id="highscore-list" class="high-score-list">
+            <!-- Shows list of high scores from localStorage -->
         </div>
         <div class="end-buttons">
             <button id="go-back">Go back</button>
