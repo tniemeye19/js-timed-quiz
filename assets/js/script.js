@@ -1,11 +1,11 @@
 let questionsObj = [
     {
         q: "Commonly used data types DO NOT include:",
-        a: "3. alerts",
-        c1: "1. strings",
-        c2: "2. booleans",
-        c3: "3. alerts",
-        c4: "4. numbers"
+        a: "alerts",
+        c1: "strings",
+        c2: "booleans",
+        c3: "alerts",
+        c4: "numbers"
     },
     {
         q: "The condition of an if / else statement is enclosed with ______.",
@@ -45,6 +45,7 @@ let questionsObj = [
 // Initialize Elements for use in JavaScript
 var startBtn = document.querySelector(".start-btn");
 var timerEl = document.querySelector("#timer-sec");
+var viewHighScoreEl = document.querySelector("#view-hs");
 var landingPageEl = document.querySelector("#title-screen");
 var questionsEl = document.querySelector("#question-screen");
 var completeEl = document.querySelector("#complete-screen");
@@ -57,53 +58,90 @@ var choiceThreeEl = document.querySelector("#s3");
 var choiceFourEl = document.querySelector("#s4");
 var wrongORrightEl = document.querySelector("#wrongORright");
 var userFinalScoreEl = document.querySelector("#final-score");
+var finalScoreSubmitBtn = document.querySelector("#submit");
+var goBackEl = document.querySelector("#go-back");
+var clearScores = document.querySelector("#clear-scores");
+
+
+// Initialize Event Listeners for use in JavaScript
+startBtn.addEventListener('click', startGame);
+startBtn.addEventListener('click', nextQuestion);
+viewHighScoreEl.addEventListener('click', viewHighScores);
+goBackEl.addEventListener('click', goBack);
+clearScores.addEventListener('click', clearHighScores);
+finalScoreSubmitBtn.addEventListener('click', submitHighScores);
+
+
+// zIndex's for reference from CSS
+    // landingPageEl.style.zIndex = 0
+    // questionsEl.style.zIndex = -1
+    // completeEl.style.zIndex = -2
+    // highscoreEl.style.zIndex = -3
 
 // Initialize variables for use within functions
 score = 0;
 
-
 // Initialize Variables for Timer
 timerEl.textContent = 0;
-var timeRemaining = 100;
-// On Start Quiz click, timer begins counting down in increments of 1000 ms
-startBtn.addEventListener('click', function() {
+var timeRemaining = 99;
+
+// Start Game function
+function startGame() {
 
     console.log("Start Button has been pressed");
-    // Set Title Screen to "disappear" so the questions page will be visible
-    questionsEl.style.zIndex = "1";
 
     var timerInterval = setInterval(function() {
-        if (timeRemaining >= 0) {
+        if (timeRemaining > 0) {
             timerEl.textContent = timeRemaining;
             timeRemaining--;
+        } else {
+            timerEl.textContent = "";
+            clearInterval(timerInterval);
+            timeRemaining = 99;
+            endGame();
         }
+
     }, 1000);
 
-    nextQuestion();
+}
 
-});
+// Initialize index to increment through the questionsObj
 
 
-var currentQuestionIndex = 0;
-var nextQuestion = function() {
+// Next Question Function
+function nextQuestion() {
 
-    console.log("nextQuestion function executed");
+    questionsEl.style.zIndex = "1";
 
-    function evaluateAndIncrement() {
+    var currentQuestionIndex = 0;
+    console.log(currentQuestionIndex);
+    var currentQuestion = questionsObj[currentQuestionIndex];
+    console.log(currentQuestion);
+    var qObjLen = questionsObj.length;
+    console.log(qObjLen);
+
+    for (var currentQuestionIndex = 0; currentQuestionIndex < qObjLen; currentQuestionIndex++) {
         
-        if ((choiceOneClickEl === currentQuestion.a) ||
-            (choiceTwoClickEl === currentQuestion.a) ||
-            (choiceThreeClickEl === currentQuestion.a) ||
-            (choiceFourClickEl === currentQuestion.a)) {
-            console.log("You are correct!");
+        questionTitleEl.textContent = currentQuestion.q;
+        choiceOneEl.textContent = currentQuestion.c1;
+        choiceTwoEl.textContent = currentQuestion.c2;
+        choiceThreeEl.textContent = currentQuestion.c3;
+        choiceFourEl.textContent = currentQuestion.c4;
+
+    }
+    
+    selectionsEl.addEventListener('click', evaluateAndIncrement);
+
+    function evaluateAndIncrement(userGuess) {
+        if (userGuess.target.innerHTML === currentQuestion.a) {
+            console.log("Correct!");
             wrongORrightEl.textContent = "Correct!";
             score = score + 20;
-            console.log(score);
             currentQuestionIndex += 1;
             console.log(currentQuestionIndex);
             nextQuestion();
         } else {
-            console.log("You are wrong!")
+            console.log("Wrong!");
             wrongORrightEl.textContent = "Wrong!";
             timeRemaining = timeRemaining - 10;
             currentQuestionIndex += 1;
@@ -111,21 +149,48 @@ var nextQuestion = function() {
             nextQuestion();
         }
     }
+}
 
+// End Game function
+function endGame() {
+    console.log("endGame function initiated");
+    // Reset zIndex's for pages not currently being displayed
+    questionsEl.style.zIndex = "-1";
+    // Set zIndex so Complete Screen is visible
+    completeEl.style.zIndex = "1";
+}
 
-    var currentQuestion = questionsObj[currentQuestionIndex];
-    var qObj = questionsObj.length;
+// View High Scores function
+function viewHighScores() {
+    console.log("viewHighScore function initiated");
+    // Reset zIndex's for pages not currently being displayed
+    landingPageEl.style.zIndex = "0";
+    questionsEl.style.zIndex = "-1";
+    completeEl.style.zIndex = "-2";
+    // Set zIndex so High Score screen is visible
+    highscoreEl.style.zIndex = "1";
+}
 
-    questionTitleEl.textContent = currentQuestion.q;
-    choiceOneEl.textContent = currentQuestion.c1;
-    choiceTwoEl.textContent = currentQuestion.c2;
-    choiceThreeEl.textContent = currentQuestion.c3;
-    choiceFourEl.textContent = currentQuestion.c4;
-    var choiceOneClickEl = document.querySelector("#s1").addEventListener("click", evaluateAndIncrement);
-    var choiceTwoClickEl = document.querySelector("#s2").addEventListener("click", evaluateAndIncrement);
-    var choiceThreeClickEl = document.querySelector("#s3").addEventListener("click", evaluateAndIncrement);
-    var choiceFourClickEl = document.querySelector("#s4").addEventListener("click", evaluateAndIncrement);
-    console.log(currentQuestionIndex);
+// Go Back function
+function goBack() {
+    console.log("goBack function initiated");
+    // Reset zIndex's for pages not currently being displayed
+    questionsEl.style.zIndex = "-1";
+    completeEl.style.zIndex = "-2";
+    highscoreEl.style.zIndex = "-3";
+    // Set zIndex so Title Screen is visible
+    landingPageEl.style.zIndex = "1";
+}
 
+// Clear High Scores function
+function clearHighScores() {
+    console.log("clearHighScores function initiated");
+    // Clears local storage and empties the list of high scores
+}
 
-};
+// Submit High Scores function
+function submitHighScores() {
+    console.log("submitHighScores function initiated");
+    // takes high score and initials input from form and stores them in local storage,
+    // and displays them on the High Score screen
+}

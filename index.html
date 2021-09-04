@@ -14,13 +14,13 @@
     <header>
         <nav>
             <ul>
-                <li><a href="">View high scores</a></li>
+                <li><span id="view-hs">View high scores</span></li>
                 <li>Time: <span id="timer-sec"></span></li>
             </ul>
         </nav>
     </header>
     <!-- Landing Page, Quiz Title Page -->
-    <section id="title-screen" class='title-container visible'>
+    <section id="title-screen" class='title-container invisible'>
         <div>
             <h1 class="page-title">Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. 
@@ -33,7 +33,7 @@
     </section>
 
     <!-- Quiz Questions -->
-    <section id="question-screen" class="question-container visible">
+    <section id="question-screen" class="question-container invisible">
         <!-- Question -->
         <div id="question-title" class="question-ask">
             <!-- Question from Object -->
@@ -60,7 +60,7 @@
     </section>
 
     <!-- Quiz Complete -->
-    <section id="complete-screen" class="complete-container visible">
+    <section id="complete-screen" class="complete-container invisible">
         <div class="complete">
             <span>All done!</span>
             <div class="final-statement">
@@ -70,13 +70,13 @@
                 <form>
                     <label for="initials" class="initial-txt">Enter initials:</label>
                     <input type="text" id="initials" name="initials" value=""></label>
-                    <button type="submit" value="Submit">Submit</button>
+                    <button type="submit" value="Submit" id="submit">Submit</button>
                 </form>
             </div>
         </div>
     </section>
     <!-- High Scores Page -->
-    <section id="highscore-screen" class="score-container visible">
+    <section id="highscore-screen" class="score-container invisible">
         <div class="high-score-statement">
             <span>High scores</span>
         </div>
