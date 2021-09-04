@@ -51,234 +51,167 @@ var completeEl = document.querySelector("#complete-screen");
 var highscoreEl = document.querySelector("#highscore-screen");
 var questionTitleEl = document.querySelector("#question-title");
 var selectionsEl = document.querySelector(".selection");
+var choiceOneClickEl = document.querySelector("#s1").addEventListener("click", nextQuestion);
 var choiceOneEl = document.querySelector("#s1");
+var choiceTwoClickEl = document.querySelector("#s2").addEventListener("click", nextQuestion);
 var choiceTwoEl = document.querySelector("#s2");
+var choiceThreeClickEl = document.querySelector("#s3").addEventListener("click", nextQuestion);
 var choiceThreeEl = document.querySelector("#s3");
+var choiceFourClickEl = document.querySelector("#s4").addEventListener("click", nextQuestion);
 var choiceFourEl = document.querySelector("#s4");
 var wrongORrightEl = document.querySelector("#wrongORright");
 var userFinalScoreEl = document.querySelector("#final-score");
 
 // Initialize variables for use within functions
 score = 0;
+
+
+// var qOne = function () {
+//     questionTitleEl.textContent = questionsObj[0].q;
+//     choiceOneEl.textContent = questionsObj[0].c1;
+//     choiceTwoEl.textContent = questionsObj[0].c2;
+//     choiceThreeEl.textContent = questionsObj[0].c3;
+//     choiceFourEl.textContent = questionsObj[0].c4;
+//     if (choiceOneEl.clicked === true ||  
+//         choiceTwoEl.clicked === true || 
+//         choiceFourEl.clicked === true) {
+//         wrongORrightEl.textContent = "Wrong!";
+//         count += 1;
+//         timeRemaining -= 10;
+//     } else if (choiceThreeEl.clicked === true) {
+//         wrongORrightEl.textContent = "Correct!";
+//         count += 1;
+//     }
+// };
+
+// var qTwo = function () {
+//     questionTitleEl.textContent = questionsObj[1].q;
+//     choiceOneEl.textContent = questionsObj[1].c1;
+//     choiceTwoEl.textContent = questionsObj[1].c2;
+//     choiceThreeEl.textContent = questionsObj[1].c3;
+//     choiceFourEl.textContent = questionsObj[1].c4;
+//     if (choiceOneEl.clicked === true ||  
+//         choiceTwoEl.clicked === true || 
+//         choiceFourEl.clicked === true) {
+//         wrongORrightEl.textContent = "Wrong!";
+//         count += 1;
+//     } else if (choiceThreeEl.clicked === true) {
+//         wrongORrightEl.textContent = "Correct!";
+//         count += 1;
+//     }
+// };
+
+// var qThree = function () {
+//     questionTitleEl.textContent = questionsObj[2].q;
+//     choiceOneEl.textContent = questionsObj[2].c1;
+//     choiceTwoEl.textContent = questionsObj[2].c2;
+//     choiceThreeEl.textContent = questionsObj[2].c3;
+//     choiceFourEl.textContent = questionsObj[2].c4;
+//     if (choiceOneEl.clicked === true ||  
+//         choiceTwoEl.clicked === true || 
+//         choiceThreeEl.clicked === true) {
+//         wrongORrightEl.textContent = "Wrong!";
+//         count += 1;
+//     } else if (choiceFourEl.clicked === true) {
+//         wrongORrightEl.textContent = "Correct!";
+//         count += 1;
+//     }
+// };
+
+// var qFour = function () {
+//     questionTitleEl.textContent = questionsObj[3].q;
+//     choiceOneEl.textContent = questionsObj[3].c1;
+//     choiceTwoEl.textContent = questionsObj[3].c2;
+//     choiceThreeEl.textContent = questionsObj[3].c3;
+//     choiceFourEl.textContent = questionsObj[3].c4;
+//     if (choiceOneEl.clicked === true ||  
+//         choiceTwoEl.clicked === true || 
+//         choiceFourEl.clicked === true) {
+//         wrongORrightEl.textContent = "Wrong!";
+//         count += 1;
+//     } else if (choiceThreeEl.clicked === true) {
+//         wrongORrightEl.textContent = "Correct!";
+//         count += 1;
+//     }
+// };
+
+// var qFive = function () {
+//     questionTitleEl.textContent = questionsObj[4].q;
+//     choiceOneEl.textContent = questionsObj[4].c1;
+//     choiceTwoEl.textContent = questionsObj[4].c2;
+//     choiceThreeEl.textContent = questionsObj[4].c3;
+//     choiceFourEl.textContent = questionsObj[4].c4;
+//     if (choiceOneEl.clicked === true ||  
+//         choiceTwoEl.clicked === true || 
+//         choiceThreeEl.clicked === true) {
+//         wrongORrightEl.textContent = "Wrong!";
+//         count += 1;
+//     } else if (choiceFourEl.clicked === true) {
+//         wrongORrightEl.textContent = "Correct!";
+//         count += 1;
+//     };
+// };
+
+// Initialize Variables for Timer
 timerEl.textContent = 0;
-count = 0;
-
-var qOne = function () {
-    questionTitleEl.textContent = questionsObj[0].q;
-    choiceOneEl.textContent = questionsObj[0].c1;
-    choiceTwoEl.textContent = questionsObj[0].c2;
-    choiceThreeEl.textContent = questionsObj[0].c3;
-    choiceFourEl.textContent = questionsObj[0].c4;
-    if (choiceOneEl.clicked === true ||  
-        choiceTwoEl.clicked === true || 
-        choiceFourEl.clicked === true) {
-        wrongORrightEl.textContent = "Wrong!";
-        count += 1;
-    } else if (choiceThreeEl.clicked === true) {
-        wrongORrightEl.textContent = "Correct!";
-        count += 1;
-    }
-};
-
-var qTwo = function () {
-    questionTitleEl.textContent = questionsObj[1].q;
-    choiceOneEl.textContent = questionsObj[1].c1;
-    choiceTwoEl.textContent = questionsObj[1].c2;
-    choiceThreeEl.textContent = questionsObj[1].c3;
-    choiceFourEl.textContent = questionsObj[1].c4;
-    if (choiceOneEl.clicked === true ||  
-        choiceTwoEl.clicked === true || 
-        choiceFourEl.clicked === true) {
-        wrongORrightEl.textContent = "Wrong!";
-        count += 1;
-    } else if (choiceThreeEl.clicked === true) {
-        wrongORrightEl.textContent = "Correct!";
-        count += 1;
-    }
-};
-
-var qThree = function () {
-    questionTitleEl.textContent = questionsObj[2].q;
-    choiceOneEl.textContent = questionsObj[2].c1;
-    choiceTwoEl.textContent = questionsObj[2].c2;
-    choiceThreeEl.textContent = questionsObj[2].c3;
-    choiceFourEl.textContent = questionsObj[2].c4;
-    if (choiceOneEl.clicked === true ||  
-        choiceTwoEl.clicked === true || 
-        choiceThreeEl.clicked === true) {
-        wrongORrightEl.textContent = "Wrong!";
-        count += 1;
-    } else if (choiceFourEl.clicked === true) {
-        wrongORrightEl.textContent = "Correct!";
-        count += 1;
-    }
-};
-
-var qFour = function () {
-    questionTitleEl.textContent = questionsObj[3].q;
-    choiceOneEl.textContent = questionsObj[3].c1;
-    choiceTwoEl.textContent = questionsObj[3].c2;
-    choiceThreeEl.textContent = questionsObj[3].c3;
-    choiceFourEl.textContent = questionsObj[3].c4;
-    if (choiceOneEl.clicked === true ||  
-        choiceTwoEl.clicked === true || 
-        choiceFourEl.clicked === true) {
-        wrongORrightEl.textContent = "Wrong!";
-        count += 1;
-    } else if (choiceThreeEl.clicked === true) {
-        wrongORrightEl.textContent = "Correct!";
-        count += 1;
-    }
-};
-
-var qFive = function () {
-    questionTitleEl.textContent = questionsObj[4].q;
-    choiceOneEl.textContent = questionsObj[4].c1;
-    choiceTwoEl.textContent = questionsObj[4].c2;
-    choiceThreeEl.textContent = questionsObj[4].c3;
-    choiceFourEl.textContent = questionsObj[4].c4;
-    if (choiceOneEl.clicked === true ||  
-        choiceTwoEl.clicked === true || 
-        choiceThreeEl.clicked === true) {
-        wrongORrightEl.textContent = "Wrong!";
-        count += 1;
-    } else if (choiceFourEl.clicked === true) {
-        wrongORrightEl.textContent = "Correct!";
-        count += 1;
-    };
-};
-
-
-
+var timeRemaining = 100;
 // On Start Quiz click, timer begins counting down in increments of 1000 ms
 startBtn.addEventListener('click', function() {
 
-    var timeRemaining = 100;
+    console.log("Start Button has been pressed");
+    // Set Title Screen to "disappear" so the questions page will be visible
+    questionsEl.style.zIndex = "1";
 
     var timerInterval = setInterval(function() {
         if (timeRemaining >= 0) {
             timerEl.textContent = timeRemaining;
             timeRemaining--;
-            
-
-            // Set Title Screen to "disappear" so the questions page will be visible
-            questionsEl.style.zIndex = "1";
-
-            count = 0;
-            for (count = 0; count <= 5;) {
-                switch(count) {
-                    case 1:
-                        qOne();
-
-
-                    case 2:
-                        qTwo();
-
-
-                    case 3:
-                        qThree();
-
-
-                    case 4:
-                        qFour();
-
-
-                    case 5:
-                        qFive();
-
-
-                };
-            };
-            
-        //     // Question One Function
-        //     var questionOne = function() {
-        //         questionTitleEl.textContent = questionsObj[0].q;
-        //         choiceOneEl.textContent = questionsObj[0].c1;
-        //         choiceTwoEl.textContent = questionsObj[0].c2;
-        //         choiceThreeEl.textContent = questionsObj[0].c3;
-        //         choiceFourEl.textContent = questionsObj[0].c4;
-        //         console.log(choiceOneEl);
-        //         console.log(choiceTwoEl);
-        //         console.log(choiceThreeEl);
-        //         console.log(choiceFourEl);
-
-        //         // if (choiceOneEl.clicked === true ||  
-        //         //     choiceTwoEl.clicked === true || 
-        //         //     choiceFourEl.clicked === true) {
-        //         //         wrongORrightEl.textContent = "Wrong!";
-        //         // } else if (choiceThreeEl.clicked === true) {
-        //         //         wrongORrightEl.textContent = "Correct!";
-        //         // }
-                
-        //         choiceOneEl.textContent = questionsObj[0].c1;
-        //         choiceOneEl.addEventListener('click', function() {
-        //             wrongORrightEl.textContent = "Wrong!";
-
-        //         })
-        //         choiceTwoEl.textContent = questionsObj[0].c2;
-        //         choiceTwoEl.addEventListener('click', function () {
-        //             wrongORrightEl.textContent = "Wrong!";
-
-        //         })
-        //         choiceThreeEl.textContent = questionsObj[0].c3;
-        //         choiceThreeEl.addEventListener('click', function() {
-        //             wrongORrightEl.textContent = "Correct!";
-
-        //         })
-        //         choiceFourEl.textContent = questionsObj[0].c4;
-        //         choiceFourEl.addEventListener('click', function() {
-        //             wrongORrightEl.textContent = "Wrong!";
-
-        //         })
-
-        //     }
-
-        //     // Call Question One function
-        //     questionOne();
-        // }
         }
     }, 1000);
+
+    nextQuestion();
+
 });
 
 
 
+var nextQuestion = function() {
+    console.log("nextQuestion function executed");
+    qObj = questionsObj.length;
+    for (var i = 0; i < qObj; i++) {
+        questionTitleEl.textContent = questionsObj[i].q;
+        choiceOneEl.textContent = questionsObj[i].c1;
+        choiceTwoEl.textContent = questionsObj[i].c2;
+        choiceThreeEl.textContent = questionsObj[i].c3;
+        choiceFourEl.textContent = questionsObj[i].c4;
+    }
+    // for (var i = 0; i <= 5; i++) {
+    //     if (questionsObj[i] === 1) {
+    // };
 
+    // var ii = questionsObj.length;
 
-// input change for loop to iterate between questions and change what viewer sees for length of questions array
-
-
-// Tutor Ex. Start
-// var testButton = document.getElementById('test')
-
-// testButton.addEventListener('click', function(evt){
-//     console.log('Stuff')
-//     var scoreContainer = document.querySelector('.score-container')
-//     scoreContainer.classList.toggle('invisible')
-
-// });
-// Tutor Ex. End
-
-// On start, retrieve first question, once first question is answered,
-// it will state whether it is right or wrong. After a selectioin is
-// pressed, it will move onto the following questions until there are
-// no more questions or until time runs out. Wrong answers acquire a 10
-// second time penalty. Once the game is finished, you will be presented
-// with another screen that states you have finished the quiz, and asks
-// you to input your initials to save the score. Once you submit, it 
-// takes you to the high scores page which lists all of the scores logged.
-// From there, you can press two buttons, one will take you to the title
-// menu, and the other will clear the high scores from localStorage.
-
-// click the start button
-// - timer starts and I am
-// - presented with a question
-
-
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score
+    // for (i = 0; i < ii; i++) {
+    //     switch(questionsObj[i]) {
+    //         case 0:
+    //             questionTitleEl.textContent = questionsObj[i].q;
+    //             choiceOneEl.textContent = questionsObj[i].c1;
+    //             choiceTwoEl.textContent = questionsObj[i].c2;
+    //             choiceThreeEl.textContent = questionsObj[i].c3;
+    //             choiceFourEl.textContent = questionsObj[i].c4;
+    //             break;
+    //     }
+    
+    
+    // i = 0;
+    // for (i = 0; i <= 4; ++i) {
+    //     questionTitleEl.textContent = questionsObj[0].q;
+    //     choiceOneEl.textContent = questionsObj[0].c1;
+    //     choiceTwoEl.textContent = questionsObj[0].c2;
+    //     choiceThreeEl.textContent = questionsObj[0].c3;
+    //     choiceFourEl.textContent = questionsObj[0].c4;
+    //     choiceOneClickEl;
+    //     console.log(i);
+    // }
+    // }
+};
