@@ -41,6 +41,7 @@ let questionsObj = [
     }
 ];
 
+
 // Initialize Elements for use in JavaScript
 var startBtn = document.querySelector(".start-btn");
 var timerEl = document.querySelector("#timer-sec");
@@ -49,6 +50,7 @@ var questionsEl = document.querySelector("#question-screen");
 var completeEl = document.querySelector("#complete-screen");
 var highscoreEl = document.querySelector("#highscore-screen");
 var questionTitleEl = document.querySelector("#question-title");
+var selectionsEl = document.querySelector(".selection");
 var choiceOneEl = document.querySelector("#s1");
 var choiceTwoEl = document.querySelector("#s2");
 var choiceThreeEl = document.querySelector("#s3");
@@ -60,9 +62,7 @@ var userFinalScoreEl = document.querySelector("#final-score");
 score = 0;
 timerEl.textContent = 0;
 
-// On Start Quiz click, timer begins counting down in increments of 1000 ms
-startBtn.addEventListener('click', function() {
-
+var countdown = function() {
     var timeRemaining = 100;
 
     var timerInterval = setInterval(function() {
@@ -70,25 +70,79 @@ startBtn.addEventListener('click', function() {
             timerEl.textContent = timeRemaining;
             timeRemaining--;
         }
-    }, 1000);
+    }, 1000)
+};
 
+// On Start Quiz click, timer begins counting down in increments of 1000 ms
+startBtn.addEventListener('click', function() {
+
+    countdown();
+
+    var timeRemaining = 100;
+
+    var timerInterval = setInterval(function() {
+        if (timeRemaining >= 0) {
+            timerEl.textContent = timeRemaining;
+            timeRemaining--;
+
+            // Set Title Screen to "disappear" so the questions page will be visible
+            questionsEl.style.zIndex = "1";
+            
+            // Question One Function
+            var questionOne = function() {
+                questionTitleEl.textContent = questionsObj[0].q;
+                choiceOneEl.textContent = questionsObj[0].c1;
+                choiceTwoEl.textContent = questionsObj[0].c2;
+                choiceThreeEl.textContent = questionsObj[0].c3;
+                choiceFourEl.textContent = questionsObj[0].c4;
+                console.log(choiceOneEl);
+                console.log(choiceTwoEl);
+                console.log(choiceThreeEl);
+                console.log(choiceFourEl);
+
+                // if (choiceOneEl.clicked === true ||  
+                //     choiceTwoEl.clicked === true || 
+                //     choiceFourEl.clicked === true) {
+                //         wrongORrightEl.textContent = "Wrong!";
+                // } else if (choiceThreeEl.clicked === true) {
+                //         wrongORrightEl.textContent = "Correct!";
+                // }
+                
+                choiceOneEl.textContent = questionsObj[0].c1;
+                choiceOneEl.addEventListener('click', function() {
+                    wrongORrightEl.textContent = "Wrong!";
+
+                })
+                choiceTwoEl.textContent = questionsObj[0].c2;
+                choiceTwoEl.addEventListener('click', function () {
+                    wrongORrightEl.textContent = "Wrong!";
+
+                })
+                choiceThreeEl.textContent = questionsObj[0].c3;
+                choiceThreeEl.addEventListener('click', function() {
+                    wrongORrightEl.textContent = "Correct!";
+
+                })
+                choiceFourEl.textContent = questionsObj[0].c4;
+                choiceFourEl.addEventListener('click', function() {
+                    wrongORrightEl.textContent = "Wrong!";
+
+                })
+
+            }
+
+            // Call Question One function
+            questionOne();
+        }
+
+    }, 1000);
 });
 
-startBtn.addEventListener('click', function() {
-    // Set Title Screen to "disappear" so the questions page will be visible
-    landingPageEl.style.display = "none";
-    // Input first question text
-    questionTitleEl.textContent = questionsObj[0].q;
-    choiceOneEl.textContent = questionsObj[0].c1;
-    choiceTwoEl.textContent = questionsObj[0].c2;
-    choiceThreeEl.textContent = questionsObj[0].c3;
-    choiceFourEl.textContent = questionsObj[0].c4;
-})
 
 
 
 
-
+// input change for loop to iterate between questions and change what viewer sees for length of questions array
 
 
 // Tutor Ex. Start
