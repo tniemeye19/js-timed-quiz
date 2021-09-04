@@ -89,22 +89,21 @@ var nextQuestion = function() {
     console.log("nextQuestion function executed");
 
     function evaluateAndIncrement() {
-        if ((currentQuestion.c1 === currentQuestion.a) ||
-            (currentQuestion.c1 === currentQuestion.a) ||
-            (currentQuestion.c1 === currentQuestion.a) ||
-            (currentQuestion.c1 === currentQuestion.a)) {
+        if ((choiceOneClickEl === currentQuestion.a) ||
+            (choiceTwoClickEl === currentQuestion.a) ||
+            (choiceThreeClickEl === currentQuestion.a) ||
+            (choiceFourClickEl === currentQuestion.a)) {
             console.log("You are correct!");
             wrongORrightEl.textContent = "Correct!";
             score = score + 20;
             console.log(score);
-            currentQuestionIndex = currentQuestionIndex + 1;
+            currentQuestionIndex++;
             nextQuestion();
-
         } else {
             console.log("You are wrong!")
             wrongORrightEl.textContent = "Wrong!";
             timeRemaining = timeRemaining - 10;
-            currentQuestionIndex = currentQuestionIndex + 1;
+            currentQuestionIndex++;
             nextQuestion();
 
         }
@@ -112,7 +111,7 @@ var nextQuestion = function() {
 
     var currentQuestionIndex = 0;
     var currentQuestion = questionsObj[currentQuestionIndex];
-    qObj = questionsObj.length;
+    var qObj = questionsObj.length;
     for (var currentQuestionIndex = 0; currentQuestionIndex < qObj; currentQuestionIndex++) {
 
         questionTitleEl.textContent = currentQuestion.q;
