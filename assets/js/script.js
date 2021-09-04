@@ -61,80 +61,182 @@ var userFinalScoreEl = document.querySelector("#final-score");
 // Initialize variables for use within functions
 score = 0;
 timerEl.textContent = 0;
+count = 0;
 
-var countdown = function() {
-    var timeRemaining = 100;
-
-    var timerInterval = setInterval(function() {
-        if (timeRemaining >= 0) {
-            timerEl.textContent = timeRemaining;
-            timeRemaining--;
-        }
-    }, 1000)
+var qOne = function () {
+    questionTitleEl.textContent = questionsObj[0].q;
+    choiceOneEl.textContent = questionsObj[0].c1;
+    choiceTwoEl.textContent = questionsObj[0].c2;
+    choiceThreeEl.textContent = questionsObj[0].c3;
+    choiceFourEl.textContent = questionsObj[0].c4;
+    if (choiceOneEl.clicked === true ||  
+        choiceTwoEl.clicked === true || 
+        choiceFourEl.clicked === true) {
+        wrongORrightEl.textContent = "Wrong!";
+        count += 1;
+    } else if (choiceThreeEl.clicked === true) {
+        wrongORrightEl.textContent = "Correct!";
+        count += 1;
+    }
 };
+
+var qTwo = function () {
+    questionTitleEl.textContent = questionsObj[1].q;
+    choiceOneEl.textContent = questionsObj[1].c1;
+    choiceTwoEl.textContent = questionsObj[1].c2;
+    choiceThreeEl.textContent = questionsObj[1].c3;
+    choiceFourEl.textContent = questionsObj[1].c4;
+    if (choiceOneEl.clicked === true ||  
+        choiceTwoEl.clicked === true || 
+        choiceFourEl.clicked === true) {
+        wrongORrightEl.textContent = "Wrong!";
+        count += 1;
+    } else if (choiceThreeEl.clicked === true) {
+        wrongORrightEl.textContent = "Correct!";
+        count += 1;
+    }
+};
+
+var qThree = function () {
+    questionTitleEl.textContent = questionsObj[2].q;
+    choiceOneEl.textContent = questionsObj[2].c1;
+    choiceTwoEl.textContent = questionsObj[2].c2;
+    choiceThreeEl.textContent = questionsObj[2].c3;
+    choiceFourEl.textContent = questionsObj[2].c4;
+    if (choiceOneEl.clicked === true ||  
+        choiceTwoEl.clicked === true || 
+        choiceThreeEl.clicked === true) {
+        wrongORrightEl.textContent = "Wrong!";
+        count += 1;
+    } else if (choiceFourEl.clicked === true) {
+        wrongORrightEl.textContent = "Correct!";
+        count += 1;
+    }
+};
+
+var qFour = function () {
+    questionTitleEl.textContent = questionsObj[3].q;
+    choiceOneEl.textContent = questionsObj[3].c1;
+    choiceTwoEl.textContent = questionsObj[3].c2;
+    choiceThreeEl.textContent = questionsObj[3].c3;
+    choiceFourEl.textContent = questionsObj[3].c4;
+    if (choiceOneEl.clicked === true ||  
+        choiceTwoEl.clicked === true || 
+        choiceFourEl.clicked === true) {
+        wrongORrightEl.textContent = "Wrong!";
+        count += 1;
+    } else if (choiceThreeEl.clicked === true) {
+        wrongORrightEl.textContent = "Correct!";
+        count += 1;
+    }
+};
+
+var qFive = function () {
+    questionTitleEl.textContent = questionsObj[4].q;
+    choiceOneEl.textContent = questionsObj[4].c1;
+    choiceTwoEl.textContent = questionsObj[4].c2;
+    choiceThreeEl.textContent = questionsObj[4].c3;
+    choiceFourEl.textContent = questionsObj[4].c4;
+    if (choiceOneEl.clicked === true ||  
+        choiceTwoEl.clicked === true || 
+        choiceThreeEl.clicked === true) {
+        wrongORrightEl.textContent = "Wrong!";
+        count += 1;
+    } else if (choiceFourEl.clicked === true) {
+        wrongORrightEl.textContent = "Correct!";
+        count += 1;
+    };
+};
+
+
 
 // On Start Quiz click, timer begins counting down in increments of 1000 ms
 startBtn.addEventListener('click', function() {
 
-    countdown();
-
     var timeRemaining = 100;
 
     var timerInterval = setInterval(function() {
         if (timeRemaining >= 0) {
             timerEl.textContent = timeRemaining;
             timeRemaining--;
+            
 
             // Set Title Screen to "disappear" so the questions page will be visible
             questionsEl.style.zIndex = "1";
+
+            count = 0;
+            for (count = 0; count <= 5;) {
+                switch(count) {
+                    case 1:
+                        qOne();
+
+
+                    case 2:
+                        qTwo();
+
+
+                    case 3:
+                        qThree();
+
+
+                    case 4:
+                        qFour();
+
+
+                    case 5:
+                        qFive();
+
+
+                };
+            };
             
-            // Question One Function
-            var questionOne = function() {
-                questionTitleEl.textContent = questionsObj[0].q;
-                choiceOneEl.textContent = questionsObj[0].c1;
-                choiceTwoEl.textContent = questionsObj[0].c2;
-                choiceThreeEl.textContent = questionsObj[0].c3;
-                choiceFourEl.textContent = questionsObj[0].c4;
-                console.log(choiceOneEl);
-                console.log(choiceTwoEl);
-                console.log(choiceThreeEl);
-                console.log(choiceFourEl);
+        //     // Question One Function
+        //     var questionOne = function() {
+        //         questionTitleEl.textContent = questionsObj[0].q;
+        //         choiceOneEl.textContent = questionsObj[0].c1;
+        //         choiceTwoEl.textContent = questionsObj[0].c2;
+        //         choiceThreeEl.textContent = questionsObj[0].c3;
+        //         choiceFourEl.textContent = questionsObj[0].c4;
+        //         console.log(choiceOneEl);
+        //         console.log(choiceTwoEl);
+        //         console.log(choiceThreeEl);
+        //         console.log(choiceFourEl);
 
-                // if (choiceOneEl.clicked === true ||  
-                //     choiceTwoEl.clicked === true || 
-                //     choiceFourEl.clicked === true) {
-                //         wrongORrightEl.textContent = "Wrong!";
-                // } else if (choiceThreeEl.clicked === true) {
-                //         wrongORrightEl.textContent = "Correct!";
-                // }
+        //         // if (choiceOneEl.clicked === true ||  
+        //         //     choiceTwoEl.clicked === true || 
+        //         //     choiceFourEl.clicked === true) {
+        //         //         wrongORrightEl.textContent = "Wrong!";
+        //         // } else if (choiceThreeEl.clicked === true) {
+        //         //         wrongORrightEl.textContent = "Correct!";
+        //         // }
                 
-                choiceOneEl.textContent = questionsObj[0].c1;
-                choiceOneEl.addEventListener('click', function() {
-                    wrongORrightEl.textContent = "Wrong!";
+        //         choiceOneEl.textContent = questionsObj[0].c1;
+        //         choiceOneEl.addEventListener('click', function() {
+        //             wrongORrightEl.textContent = "Wrong!";
 
-                })
-                choiceTwoEl.textContent = questionsObj[0].c2;
-                choiceTwoEl.addEventListener('click', function () {
-                    wrongORrightEl.textContent = "Wrong!";
+        //         })
+        //         choiceTwoEl.textContent = questionsObj[0].c2;
+        //         choiceTwoEl.addEventListener('click', function () {
+        //             wrongORrightEl.textContent = "Wrong!";
 
-                })
-                choiceThreeEl.textContent = questionsObj[0].c3;
-                choiceThreeEl.addEventListener('click', function() {
-                    wrongORrightEl.textContent = "Correct!";
+        //         })
+        //         choiceThreeEl.textContent = questionsObj[0].c3;
+        //         choiceThreeEl.addEventListener('click', function() {
+        //             wrongORrightEl.textContent = "Correct!";
 
-                })
-                choiceFourEl.textContent = questionsObj[0].c4;
-                choiceFourEl.addEventListener('click', function() {
-                    wrongORrightEl.textContent = "Wrong!";
+        //         })
+        //         choiceFourEl.textContent = questionsObj[0].c4;
+        //         choiceFourEl.addEventListener('click', function() {
+        //             wrongORrightEl.textContent = "Wrong!";
 
-                })
+        //         })
 
-            }
+        //     }
 
-            // Call Question One function
-            questionOne();
+        //     // Call Question One function
+        //     questionOne();
+        // }
         }
-
     }, 1000);
 });
 
@@ -180,4 +282,3 @@ startBtn.addEventListener('click', function() {
 // THEN the game is over
 // WHEN the game is over
 // THEN I can save my initials and score
-
