@@ -84,11 +84,13 @@ startBtn.addEventListener('click', function() {
 });
 
 
-currentQuestionIndex = 0;
+var currentQuestionIndex = 0;
 var nextQuestion = function() {
+
     console.log("nextQuestion function executed");
 
     function evaluateAndIncrement() {
+        
         if ((choiceOneClickEl === currentQuestion.a) ||
             (choiceTwoClickEl === currentQuestion.a) ||
             (choiceThreeClickEl === currentQuestion.a) ||
@@ -97,33 +99,33 @@ var nextQuestion = function() {
             wrongORrightEl.textContent = "Correct!";
             score = score + 20;
             console.log(score);
-            currentQuestionIndex++;
+            currentQuestionIndex += 1;
+            console.log(currentQuestionIndex);
             nextQuestion();
         } else {
             console.log("You are wrong!")
             wrongORrightEl.textContent = "Wrong!";
             timeRemaining = timeRemaining - 10;
-            currentQuestionIndex++;
+            currentQuestionIndex += 1;
+            console.log(currentQuestionIndex);
             nextQuestion();
-
         }
     }
 
-    var currentQuestionIndex = 0;
+
     var currentQuestion = questionsObj[currentQuestionIndex];
     var qObj = questionsObj.length;
-    for (var currentQuestionIndex = 0; currentQuestionIndex < qObj; currentQuestionIndex++) {
 
-        questionTitleEl.textContent = currentQuestion.q;
-        choiceOneEl.textContent = currentQuestion.c1;
-        choiceTwoEl.textContent = currentQuestion.c2;
-        choiceThreeEl.textContent = currentQuestion.c3;
-        choiceFourEl.textContent = currentQuestion.c4;
-        var choiceOneClickEl = document.querySelector("#s1").addEventListener("click", evaluateAndIncrement);
-        var choiceTwoClickEl = document.querySelector("#s2").addEventListener("click", evaluateAndIncrement);
-        var choiceThreeClickEl = document.querySelector("#s3").addEventListener("click", evaluateAndIncrement);
-        var choiceFourClickEl = document.querySelector("#s4").addEventListener("click", evaluateAndIncrement);
-        console.log(currentQuestionIndex);
-    }
+    questionTitleEl.textContent = currentQuestion.q;
+    choiceOneEl.textContent = currentQuestion.c1;
+    choiceTwoEl.textContent = currentQuestion.c2;
+    choiceThreeEl.textContent = currentQuestion.c3;
+    choiceFourEl.textContent = currentQuestion.c4;
+    var choiceOneClickEl = document.querySelector("#s1").addEventListener("click", evaluateAndIncrement);
+    var choiceTwoClickEl = document.querySelector("#s2").addEventListener("click", evaluateAndIncrement);
+    var choiceThreeClickEl = document.querySelector("#s3").addEventListener("click", evaluateAndIncrement);
+    var choiceFourClickEl = document.querySelector("#s4").addEventListener("click", evaluateAndIncrement);
+    console.log(currentQuestionIndex);
+
 
 };
