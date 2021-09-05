@@ -69,7 +69,7 @@
             <div class="initials-box">
                 <form>
                     <label for="initials" class="initial-txt">Enter initials:</label>
-                    <input type="text" id="initials" name="initials" value=""></label>
+                    <input type="text" id="initials" name="initials"></label>
                     <button type="submit" value="Submit" id="submit">Submit</button>
                 </form>
             </div>
@@ -81,11 +81,11 @@
             <span>High scores</span>
         </div>
         <div id="highscore-list" class="high-score-list">
-            <!-- Shows list of high scores from localStorage -->
+            <span id="user-initials"></span><span id="user-score"></span>
         </div>
         <div class="end-buttons">
             <button id="go-back">Go back</button>
-            <button id="clear-scores">Clear high scores</button>
+            <button type="reset" id="clear-scores">Clear high scores</button>
         </div>
     </section>
     <script src='./assets/js/script.js'></script>
