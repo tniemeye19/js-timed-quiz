@@ -17,9 +17,10 @@ body {
     width: 100vw;
     height: 100vh;
 }
+
 header nav {
     padding: 10px 30px 0 0;
-    z-index: 99;
+    /* z-index: 99; */
 }
 
 header nav ul {
@@ -58,10 +59,6 @@ header nav ul li {
     width: 100vw;
 }
 
-.title-container {
-    z-index: 0;
-}
-
 .title-container h1 {
     text-align: center;
     font-size: 4.2vw;
@@ -98,25 +95,10 @@ header nav ul li {
 .question-container,
 .complete-container,
 .score-container {
-    position: absolute;
     display: flex;
     flex-direction: column;
     background-color: var(--quaternary-color);
-    height: 100vh;
-    width: 100vw;
     padding: 5vh 15vw 0 15vw;
-}
-
-.question-container {
-    z-index: -1;
-}
-
-.complete-container {
-    z-index: -2;
-}
-
-.score-container {
-    z-index: -3;
 }
 
 .question-ask,

@@ -51,7 +51,6 @@ var questionsEl = document.querySelector("#question-screen");
 var completeEl = document.querySelector("#complete-screen");
 var highscoreEl = document.querySelector("#highscore-screen");
 var questionTitleEl = document.querySelector("#question-title");
-var selectionsEl = document.querySelector(".selection");
 var choiceOneEl = document.querySelector("#s1");
 var choiceTwoEl = document.querySelector("#s2");
 var choiceThreeEl = document.querySelector("#s3");
@@ -64,19 +63,16 @@ var clearScores = document.querySelector("#clear-scores");
 
 
 // Initialize Event Listeners for use in JavaScript
-startBtn.addEventListener('click', startGame);
-startBtn.addEventListener('click', nextQuestion);
-viewHighScoreEl.addEventListener('click', viewHighScores);
-goBackEl.addEventListener('click', goBack);
-clearScores.addEventListener('click', clearHighScores);
-finalScoreSubmitBtn.addEventListener('click', submitHighScores);
-
-
-// zIndex's for reference from CSS
-    // landingPageEl.style.zIndex = 0
-    // questionsEl.style.zIndex = -1
-    // completeEl.style.zIndex = -2
-    // highscoreEl.style.zIndex = -3
+    // On Start Button click, execute the following functions
+    startBtn.addEventListener('click', startGame);
+    // On View High Scores click, execute the following function
+    viewHighScoreEl.addEventListener('click', viewHighScores);
+    // On Go Back click, execute the following function
+    goBackEl.addEventListener('click', goBack);
+    // On Clear Scores click, execute the following function
+    clearScores.addEventListener('click', clearHighScores);
+    // On Form Submit click, execute the following function
+    finalScoreSubmitBtn.addEventListener('click', submitHighScores);
 
 // Initialize variables for use within functions
 score = 0;
@@ -102,51 +98,63 @@ function startGame() {
         }
 
     }, 1000);
-
+    landingPageEl.style.display = "none";
+    completeEl.style.display ="none";
+    highscoreEl.style.display ="none";
+    questionsEl.style.display = "block";
+    nextQuestion();
 }
 
 // Initialize index to increment through the questionsObj
 
 
+var currentQuestionIndex = 0;
 // Next Question Function
 function nextQuestion() {
 
-    questionsEl.style.zIndex = "1";
-
-    var currentQuestionIndex = 0;
-    console.log(currentQuestionIndex);
     var currentQuestion = questionsObj[currentQuestionIndex];
+    console.log(currentQuestionIndex);
+
     console.log(currentQuestion);
-    var qObjLen = questionsObj.length;
-    console.log(qObjLen);
-
-    for (var currentQuestionIndex = 0; currentQuestionIndex < qObjLen; currentQuestionIndex++) {
         
-        questionTitleEl.textContent = currentQuestion.q;
-        choiceOneEl.textContent = currentQuestion.c1;
-        choiceTwoEl.textContent = currentQuestion.c2;
-        choiceThreeEl.textContent = currentQuestion.c3;
-        choiceFourEl.textContent = currentQuestion.c4;
+    questionTitleEl.textContent = currentQuestion.q;
+    choiceOneEl.textContent = currentQuestion.c1;
+    choiceTwoEl.textContent = currentQuestion.c2;
+    choiceThreeEl.textContent = currentQuestion.c3;
+    choiceFourEl.textContent = currentQuestion.c4;
 
-    }
-    
-    selectionsEl.addEventListener('click', evaluateAndIncrement);
+    choiceOneEl.addEventListener('click', evaluateAndIncrement);
+    choiceTwoEl.addEventListener('click', evaluateAndIncrement);
+    choiceThreeEl.addEventListener('click', evaluateAndIncrement);
+    choiceFourEl.addEventListener('click', evaluateAndIncrement);
+
 
     function evaluateAndIncrement(userGuess) {
+
         if (userGuess.target.innerHTML === currentQuestion.a) {
             console.log("Correct!");
             wrongORrightEl.textContent = "Correct!";
             score = score + 20;
             currentQuestionIndex += 1;
+            clearEventListeners();
             console.log(currentQuestionIndex);
             nextQuestion();
+
         } else {
             console.log("Wrong!");
             wrongORrightEl.textContent = "Wrong!";
             timeRemaining = timeRemaining - 10;
             currentQuestionIndex += 1;
+            clearEventListeners();
             console.log(currentQuestionIndex);
             nextQuestion();
+        }
+
+        function clearEventListeners() {
+            choiceOneEl.removeEventListener('click', evaluateAndIncrement);
+            choiceTwoEl.removeEventListener('click', evaluateAndIncrement);
+            choiceThreeEl.removeEventListener('click', evaluateAndIncrement);
+            choiceFourEl.removeEventListener('click', evaluateAndIncrement);
         }
     }
 }
@@ -155,31 +163,27 @@ function nextQuestion() {
 function endGame() {
     console.log("endGame function initiated");
     // Reset zIndex's for pages not currently being displayed
-    questionsEl.style.zIndex = "-1";
+
     // Set zIndex so Complete Screen is visible
-    completeEl.style.zIndex = "1";
+
 }
 
 // View High Scores function
 function viewHighScores() {
     console.log("viewHighScore function initiated");
     // Reset zIndex's for pages not currently being displayed
-    landingPageEl.style.zIndex = "0";
-    questionsEl.style.zIndex = "-1";
-    completeEl.style.zIndex = "-2";
+
     // Set zIndex so High Score screen is visible
-    highscoreEl.style.zIndex = "1";
+
 }
 
 // Go Back function
 function goBack() {
     console.log("goBack function initiated");
     // Reset zIndex's for pages not currently being displayed
-    questionsEl.style.zIndex = "-1";
-    completeEl.style.zIndex = "-2";
-    highscoreEl.style.zIndex = "-3";
+
     // Set zIndex so Title Screen is visible
-    landingPageEl.style.zIndex = "1";
+
 }
 
 // Clear High Scores function
@@ -194,3 +198,4 @@ function submitHighScores() {
     // takes high score and initials input from form and stores them in local storage,
     // and displays them on the High Score screen
 }
+
