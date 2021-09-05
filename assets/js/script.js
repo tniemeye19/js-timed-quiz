@@ -91,7 +91,7 @@ function startGame() {
             timerEl.textContent = timeRemaining;
             timeRemaining--;
         } else {
-            timerEl.textContent = "";
+            timerEl.textContent = 0;
             clearInterval(timerInterval);
             endGame();
         }
@@ -99,7 +99,6 @@ function startGame() {
     }, 1000);
 
     resetDisplayTypes();
-    questionsEl.style.display = "block";
     nextQuestion();
 }
 
@@ -108,6 +107,8 @@ var currentQuestionIndex = 0;
 
 // Next Question Function
 function nextQuestion() {
+
+    questionsEl.style.display = "block";
 
     console.log("nextQuestion function initiated");
 
@@ -159,8 +160,7 @@ function nextQuestion() {
         }
 
     } else {
-        resetDisplayTypes();
-        completeEl.style.display = "block";
+        endGame();
         timeRemaining = 0;
 
     }
@@ -184,8 +184,10 @@ function viewHighScores() {
 }
 
 // Submit High Scores function
-function submitUserHighScore() {
+function submitUserHighScore(event) {
     console.log("submitHighScores function initiated");
+    event.preventDefault();
+    resetDisplayTypes();
     highscoreEl.style.display = "block";
 }
 
@@ -194,6 +196,8 @@ function goBack() {
     console.log("goBack function initiated");
     resetDisplayTypes();
     landingPageEl.style.display = "block";
+    timeRemaining = 99;
+
 }
 
 // Clear High Scores function
