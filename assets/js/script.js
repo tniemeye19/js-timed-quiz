@@ -72,7 +72,7 @@ var clearScores = document.querySelector("#clear-scores");
     // On Clear Scores click, execute the following function
     clearScores.addEventListener('click', clearHighScores);
     // On Form Submit click, execute the following function
-    finalScoreSubmitBtn.addEventListener('click', submitHighScores);
+    finalScoreSubmitBtn.addEventListener('click', submitUserHighScore);
 
 // Initialize variables for use within functions
 score = 0;
@@ -93,109 +93,118 @@ function startGame() {
         } else {
             timerEl.textContent = "";
             clearInterval(timerInterval);
-            timeRemaining = 99;
             endGame();
         }
 
     }, 1000);
-    landingPageEl.style.display = "none";
-    completeEl.style.display ="none";
-    highscoreEl.style.display ="none";
+
+    resetDisplayTypes();
     questionsEl.style.display = "block";
     nextQuestion();
 }
 
 // Initialize index to increment through the questionsObj
-
-
 var currentQuestionIndex = 0;
+
 // Next Question Function
 function nextQuestion() {
 
-    var currentQuestion = questionsObj[currentQuestionIndex];
-    console.log(currentQuestionIndex);
+    console.log("nextQuestion function initiated");
 
-    console.log(currentQuestion);
+    if (currentQuestionIndex <= 4) {
+
+        var currentQuestion = questionsObj[currentQuestionIndex];
         
-    questionTitleEl.textContent = currentQuestion.q;
-    choiceOneEl.textContent = currentQuestion.c1;
-    choiceTwoEl.textContent = currentQuestion.c2;
-    choiceThreeEl.textContent = currentQuestion.c3;
-    choiceFourEl.textContent = currentQuestion.c4;
+        questionTitleEl.textContent = currentQuestion.q;
+        choiceOneEl.textContent = currentQuestion.c1;
+        choiceTwoEl.textContent = currentQuestion.c2;
+        choiceThreeEl.textContent = currentQuestion.c3;
+        choiceFourEl.textContent = currentQuestion.c4;
+    
+        // Add event listener for each choice
+        choiceOneEl.addEventListener('click', evaluateAndIncrement);
+        choiceTwoEl.addEventListener('click', evaluateAndIncrement);
+        choiceThreeEl.addEventListener('click', evaluateAndIncrement);
+        choiceFourEl.addEventListener('click', evaluateAndIncrement);
 
-    choiceOneEl.addEventListener('click', evaluateAndIncrement);
-    choiceTwoEl.addEventListener('click', evaluateAndIncrement);
-    choiceThreeEl.addEventListener('click', evaluateAndIncrement);
-    choiceFourEl.addEventListener('click', evaluateAndIncrement);
+        function evaluateAndIncrement(userGuess) {
 
+            console.log("evaluateAndIncrement function initiated");
+    
+                if (userGuess.target.innerHTML === currentQuestion.a) {
+                    console.log("Correct!");
+                    wrongORrightEl.textContent = "Correct!";
+                    score = score + 20;
+                    console.log(score);
+                    currentQuestionIndex += 1;
+                    clearEventListeners();
+                    nextQuestion();
+        
+                } else {
+                    console.log("Wrong!");
+                    wrongORrightEl.textContent = "Wrong!";
+                    timeRemaining = timeRemaining - 20;
+                    currentQuestionIndex += 1;
+                    clearEventListeners();
+                    nextQuestion();
 
-    function evaluateAndIncrement(userGuess) {
+                }
 
-        if (userGuess.target.innerHTML === currentQuestion.a) {
-            console.log("Correct!");
-            wrongORrightEl.textContent = "Correct!";
-            score = score + 20;
-            currentQuestionIndex += 1;
-            clearEventListeners();
-            console.log(currentQuestionIndex);
-            nextQuestion();
-
-        } else {
-            console.log("Wrong!");
-            wrongORrightEl.textContent = "Wrong!";
-            timeRemaining = timeRemaining - 10;
-            currentQuestionIndex += 1;
-            clearEventListeners();
-            console.log(currentQuestionIndex);
-            nextQuestion();
+            function clearEventListeners() {
+                choiceOneEl.removeEventListener('click', evaluateAndIncrement);
+                choiceTwoEl.removeEventListener('click', evaluateAndIncrement);
+                choiceThreeEl.removeEventListener('click', evaluateAndIncrement);
+                choiceFourEl.removeEventListener('click', evaluateAndIncrement);
+            }
         }
 
-        function clearEventListeners() {
-            choiceOneEl.removeEventListener('click', evaluateAndIncrement);
-            choiceTwoEl.removeEventListener('click', evaluateAndIncrement);
-            choiceThreeEl.removeEventListener('click', evaluateAndIncrement);
-            choiceFourEl.removeEventListener('click', evaluateAndIncrement);
-        }
+    } else {
+        resetDisplayTypes();
+        completeEl.style.display = "block";
+        timeRemaining = 0;
+
     }
+
 }
 
 // End Game function
 function endGame() {
     console.log("endGame function initiated");
-    // Reset zIndex's for pages not currently being displayed
-
-    // Set zIndex so Complete Screen is visible
-
+    resetDisplayTypes();
+    completeEl.style.display ="block";
 }
 
 // View High Scores function
 function viewHighScores() {
     console.log("viewHighScore function initiated");
-    // Reset zIndex's for pages not currently being displayed
+    console.log(viewHighScoreEl)
+    resetDisplayTypes();
+    highscoreEl.style.display = "block";
+    timeRemaining = 0;
+}
 
-    // Set zIndex so High Score screen is visible
-
+// Submit High Scores function
+function submitUserHighScore() {
+    console.log("submitHighScores function initiated");
+    highscoreEl.style.display = "block";
 }
 
 // Go Back function
 function goBack() {
     console.log("goBack function initiated");
-    // Reset zIndex's for pages not currently being displayed
-
-    // Set zIndex so Title Screen is visible
-
+    resetDisplayTypes();
+    landingPageEl.style.display = "block";
 }
 
 // Clear High Scores function
 function clearHighScores() {
     console.log("clearHighScores function initiated");
-    // Clears local storage and empties the list of high scores
+
 }
 
-// Submit High Scores function
-function submitHighScores() {
-    console.log("submitHighScores function initiated");
-    // takes high score and initials input from form and stores them in local storage,
-    // and displays them on the High Score screen
+function resetDisplayTypes() {
+    landingPageEl.style.display = "none";
+    completeEl.style.display ="none";
+    highscoreEl.style.display ="none";
+    questionsEl.style.display = "none";
 }
-
