@@ -48,10 +48,10 @@ var startBtn = document.querySelector(".start-btn");
 var finalScoreSubmitBtn = document.querySelector("#submit");
 var goBackBtn = document.querySelector("#go-back");
 var clearScoresBtn = document.querySelector("#clear-scores");
+var viewHighScoreBtn = document.querySelector("#view-hs");
 
 var timerEl = document.querySelector("#timer-sec");
 
-var viewHighScoreEl = document.querySelector("#view-hs");
 var landingPageEl = document.querySelector("#title-screen");
 var questionsEl = document.querySelector("#question-screen");
 var completeEl = document.querySelector("#complete-screen");
@@ -74,7 +74,7 @@ var userScoreEl = document.querySelector("#user-score");
     // On Start Button click, execute the following functions
 startBtn.addEventListener('click', startGame);
     // On View High Scores click, execute the following function
-viewHighScoreEl.addEventListener('click', viewHighScores);
+viewHighScoreBtn.addEventListener('click', viewHighScores);
     // On Go Back click, execute the following function
 goBackBtn.addEventListener('click', goBack);
     // On Clear Scores click, execute the following function
@@ -139,17 +139,16 @@ function nextQuestion() {
 
                 // If correct, correct displays and points are added to score
                 if (userGuess.target.innerHTML === currentQuestion.a) {
-                    console.log("Correct!");
+
                     wrongORrightEl.textContent = "Correct!";
-                    score = score + 20;
-                    console.log(score);
+                    score = score + (Math.floor(Math.random() * 20) + 1);
                     currentQuestionIndex += 1;
                     clearEventListeners();
                     nextQuestion();
 
                 // If incorrect, wrong displays and time is deducted from counter
                 } else {
-                    console.log("Wrong!");
+
                     wrongORrightEl.textContent = "Wrong!";
                     timeRemaining = timeRemaining - 20;
                     currentQuestionIndex += 1;
@@ -186,7 +185,6 @@ function endGame() {
 // View High Scores function
 function viewHighScores() {
 
-    console.log(viewHighScoreEl)
     resetDisplayTypes();
     highscoreEl.style.display = "block";
     timeRemaining = 0;
@@ -226,6 +224,7 @@ function goBack() {
 
 // Clear High Scores function
 function clearHighScores() {
+
     localStorage.clear();
     var initialsInputEl = document.querySelectorAll("#initials");
     userInitialsEl.textContent = "";
