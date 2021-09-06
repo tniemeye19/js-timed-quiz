@@ -13,7 +13,7 @@ Good luck with the quiz!
 * Ending/Results Page
 
 ## Mock Up / Screenshot
-![Website Screenshot](https://raw.githubusercontent.com/tniemeye19/js-timed-quiz/main/assets/images/quizLandingPage.png)
+![Website Screenshot](https://raw.githubusercontent.com/tniemeye19/js-timed-quiz/main/assets/images/quizLandingPage.PNG)
 
 ## Website Link
 Click [here](https://tniemeye19.github.io/js-timed-quiz/) to go to the JavaScript Timed Quiz.
